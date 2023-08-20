@@ -1,6 +1,7 @@
 import sqlparse
 import psycopg2
 import click
+from colored import fg
 import sys
 
 
@@ -16,15 +17,13 @@ def format_query(query):
 
 def print_results(is_valid=False, error_msg=None):
     if is_valid:
-        click.echo("Query is valid.")
+        print("Query is valid.")
     else:
+        color = fg('red')
         print("Query is not valid.",)
-        click.secho(
-            f"Validation error: {error_msg}",
-            fg="red",
-        )
-
-    print("=" * 20)
+        print(color + f"Validation error: {error_msg}")
+    color = fg('white')
+    print(color + "=" * 20)
 
 
 def validate_sql(connection, query):
@@ -32,6 +31,7 @@ def validate_sql(connection, query):
     try:
         parsed = sqlparse.parse(query)
         if len(parsed) == 0:
+
             return False, "Invalid SQL: Empty query"
         formatted_query = format_query(query)
 
