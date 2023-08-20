@@ -8,6 +8,12 @@ setup(
     author="Ahmad Wahid",
     author_email="ahmedwahid16101@email.com",
     url="https://github.com/yourusername/simplemath",
+    install_requires=[
+        "click",
+        "sqlparse",
+        "psycopg2-binary",
+        "wheel",
+    ],
     entry_points={
         "console_scripts": ["sql_validator=sql_validator.validate:main"],
     },
