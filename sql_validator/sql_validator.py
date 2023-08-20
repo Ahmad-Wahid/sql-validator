@@ -15,16 +15,6 @@ def format_query(query):
     )
     return formatted_query
 
-def print_results(is_valid=False, error_msg=None):
-    if is_valid:
-        print("Query is valid.")
-    else:
-        color = fg('red')
-        print("Query is not valid.",)
-        print(color + f"Validation error: {error_msg}")
-    color = fg('white')
-    print(color + "=" * 20)
-
 
 def validate_sql(connection, query):
     cursor = connection.cursor()
