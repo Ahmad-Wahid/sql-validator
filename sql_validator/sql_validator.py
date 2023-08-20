@@ -5,7 +5,7 @@ from colored import fg
 import sys
 
 
-def format_query(query):
+def format_query(query: str) -> str:
     formatted_query = sqlparse.format(
         query,
         strip_comments=True,
@@ -16,7 +16,7 @@ def format_query(query):
     return formatted_query
 
 
-def validate_sql(connection, query):
+def validate_sql(connection: psycopg2, query: str):
     cursor = connection.cursor()
     try:
         parsed = sqlparse.parse(query)
