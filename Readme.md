@@ -1,4 +1,4 @@
-### Pre-requisites
+### Prerequisites
 Before using this package make sure that you have a postgres database either locally or remote.
 
 ### Installation
@@ -17,7 +17,7 @@ To install this package, run the following command.
    name = database_name
    user = database_user
    password = database_password
-   host = ip-address
+   host = ip_address
    port = port
    ```
 
