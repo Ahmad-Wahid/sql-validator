@@ -14,14 +14,13 @@ def format_query(query):
     )
     return formatted_query
 
-def print_results(is_valid, validation_result):
+def print_results(is_valid=False, error_msg=None):
     if is_valid:
         click.echo("Query is valid.")
     else:
-        print("Query is not valid.", file=sys.stderr)
+        print("Query is not valid.",)
         click.secho(
-            f"Validation error: {validation_result}",
-            file=sys.stderr,
+            f"Validation error: {error_msg}",
             fg="red",
         )
 
@@ -40,14 +39,14 @@ def validate_sql(connection, query):
             cursor.execute(formatted_query)
             result = cursor.fetchall()
             click.secho(formatted_query, fg="green")
-            print_results(True, result)
+            print_results(is_valid=True)
         else:
             click.secho(formatted_query, fg="yellow")
-            print_results(False, "Invalid SQL: Only SELECT statements are supported for validation")
+            print_results(is_valid=False, error_msg="Invalid SQL: Only SELECT statements are supported for validation")
     except psycopg2.Error as e:
         formatted_query = format_query(query)
         click.secho(formatted_query, fg="yellow")
-        print_results(False, str(e))
+        print_results(is_valid=False, error_msg=str(e))
     finally:
         cursor.close()
 
