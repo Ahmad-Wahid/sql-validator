@@ -32,7 +32,7 @@ def validate_sql(connection: psycopg2, query: str):
             click.secho("Query is valid.")
         else:
             click.secho(formatted_query, fg="yellow")
-            click.secho("Valiation error: Invalid SQL: Only SELECT statements are supported for validation", fg="red")
+            click.secho("Invalid SQL: Only SELECT statements are supported for validation", fg="red")
     except psycopg2.Error as e:
         formatted_query = format_query(query)
         click.secho(formatted_query, fg="yellow")
