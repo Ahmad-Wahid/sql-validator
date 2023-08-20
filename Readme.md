@@ -1,24 +1,37 @@
+### Pre-requisites
+Before using this package make sure that you have a postgres database either locally or remote.
+
+### Installation
+
+To install this package, run the following command.
+
+   ```python
+   pip install git+https://github.com/Ahmad-Wahid/sql-validator.git#egg=sql-validator
+   ```
+
 ### Usage
 
-1. First change the directory to `sql_syntax_validator`.
-2. Update the `config.ini` file.
-3. Then install requirements using the following command.
+1. Create an environment file `.env`, and update the following DB variables.
 
-    ```python
-    pip install requirements.txt
-    ```
+   ```text
+   name = database_name
+   user = database_user
+   password = database_password
+   host = ip-address
+   port = port
+   ```
 
-4. To run the validation script, there are two options. You can either pass a single query or file of multiple queries.
+1. To run the validation script, there are two options. You can either pass a single query or file of multiple queries.
    
     - For passing a single query, run the following command. 
          
          ```python
-         python validate.py --query "pass your query here"
+         sql_validator --query "pass your query here"
          ```
     
-    - For passing a file `queries.sql` or another file of multiple queries, run the following command.
+    - For passing a file with `.sql` extension, run the following command.
       
          ```python
-         python validate.py --file queries.sql
+         sql_validator --file path/to/file-name.sql
          ```
          Make sure that, there is a semicolon at the end of every query.
