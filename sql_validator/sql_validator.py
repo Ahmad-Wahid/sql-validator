@@ -1,6 +1,7 @@
 import sqlparse
 import psycopg2
 import click
+import sys
 
 
 def format_query(query):
@@ -12,6 +13,23 @@ def format_query(query):
         indent_columns=True,
     )
     return formatted_query
+
+def print_results(is_valid, validation_result):
+    if is_valid:
+        click.echo("Query is valid.")
+        print("=" * 20)
+        # if validation_result:
+        #     click.echo("Query result:")
+        #     for row in validation_result:
+        #         click.echo(row)
+    else:
+        print("Query is not valid.", file=sys.stderr)
+        click.secho(
+            f"Validation error: {validation_result}",
+            file=sys.stderr,
+            fg="red",
+        )
+        print("=" * 20)
 
 
 def validate_sql(connection, query):
@@ -26,16 +44,14 @@ def validate_sql(connection, query):
             cursor.execute(formatted_query)
             result = cursor.fetchall()
             click.secho(formatted_query, fg="green")
-            return True, result
+            print_results(True, result)
         else:
             click.secho(formatted_query, fg="yellow")
-            return (
-                False,
-                "Invalid SQL: Only SELECT statements are supported for validation",
-            )
+            print_results(False, "Invalid SQL: Only SELECT statements are supported for validation")
     except psycopg2.Error as e:
         formatted_query = format_query(query)
         click.secho(formatted_query, fg="yellow")
-        return False, str(e)
+        print_results(False, str(e))
     finally:
         cursor.close()
+

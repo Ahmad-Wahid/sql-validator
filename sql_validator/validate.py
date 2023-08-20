@@ -24,23 +24,7 @@ def main(query, file):
 
         for sql_query in queries:
             if sql_query.strip():
-                is_valid, validation_result = validate_sql(conn, sql_query.strip())
-
-                if is_valid:
-                    click.echo("Query is valid.")
-                    print("=" * 20)
-                    # if validation_result:
-                    #     click.echo("Query result:")
-                    #     for row in validation_result:
-                    #         click.echo(row)
-                else:
-                    print("Query is not valid.", file=sys.stderr)
-                    click.secho(
-                        f"Validation error: {validation_result}",
-                        file=sys.stderr,
-                        fg="red",
-                    )
-                    print("=" * 20)
+                validate_sql(conn, sql_query.strip())
             else:
                 click.echo("Empty string is passed.")
     except Exception as e:
