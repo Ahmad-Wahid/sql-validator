@@ -17,11 +17,6 @@ def format_query(query):
 def print_results(is_valid, validation_result):
     if is_valid:
         click.echo("Query is valid.")
-        print("=" * 20)
-        # if validation_result:
-        #     click.echo("Query result:")
-        #     for row in validation_result:
-        #         click.echo(row)
     else:
         print("Query is not valid.", file=sys.stderr)
         click.secho(
@@ -29,7 +24,8 @@ def print_results(is_valid, validation_result):
             file=sys.stderr,
             fg="red",
         )
-        print("=" * 20)
+
+    print("=" * 20)
 
 
 def validate_sql(connection, query):
