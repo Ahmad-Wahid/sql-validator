@@ -7,7 +7,7 @@ setup(
     description="A python package to validate SQL Queries",
     author="Ahmad Wahid",
     author_email="ahmedwahid16101@email.com",
-    url="https://github.com/yourusername/simplemath",
+    url="https://github.com/Ahmad-Wahid/sql-validator",
     install_requires=[
         "click",
         "sqlparse",
