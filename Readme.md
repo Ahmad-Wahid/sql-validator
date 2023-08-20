@@ -21,11 +21,11 @@ To install this package, run the following command.
 1. Create an environment file `.env`, and update the following DB variables.
 
    ```text
-   name = database_name
-   user = database_user
-   password = database_password
-   host = ip_address
-   port = port
+   DB_NAME = database_name
+   DB_USER = database_user
+   DB_PASSWORD = database_password
+   DB_HOST = ip_address
+   DB_PORT = port
    ```
 
 1. To run the validation script, there are two options. You can either pass a single query or file of multiple queries.
