@@ -22,5 +22,3 @@ def connect_db():
             print("Database credentials not found in .env file")
     except Exception as e:
         print("An error occurred:", e)
-
-# Rest of your code
