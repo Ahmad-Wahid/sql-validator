@@ -6,7 +6,7 @@
 sql_validator is a CLI Python package that validates and format SQL(postgres) queries.
 
 ### Prerequisites
-Before using this package make sure that you have a postgres database either locally or remote.
+Before using this package make sure that you have a postgres database either on the local server or remote server, and have some data in it.
 
 ### Installation
 
