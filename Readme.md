@@ -1,3 +1,10 @@
+# sql_validator
+
+---
+
+### What is it?
+sql_validator is a Python package that validates and format SQL(postgres) queries.
+
 ### Prerequisites
 Before using this package make sure that you have a postgres database either locally or remote.
 
@@ -6,7 +13,7 @@ Before using this package make sure that you have a postgres database either loc
 To install this package, run the following command.
 
    ```python
-   pip install git+https://github.com/Ahmad-Wahid/sql-validator.git#egg=sql-validator
+   pip install git+https://github.com/Ahmad-Wahid/sql-validator
    ```
 
 ### Usage
