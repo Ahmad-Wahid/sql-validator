@@ -14,7 +14,7 @@ def format_query(query: str) -> str:
     return formatted_query
 
 
-def validate_sql(connection: psycopg2, query: str):
+def validate_sql(connection: psycopg2, query: str, show_data: bool = False):
     cursor = connection.cursor()
     try:
         parsed = sqlparse.parse(query)
@@ -27,6 +27,10 @@ def validate_sql(connection: psycopg2, query: str):
             result = cursor.fetchall()
             click.secho(formatted_query, fg="green")
             click.secho("Query is valid.")
+            if show_data:
+                click.echo("Printing the resultant data.")
+                for row in result:
+                    click.echo(row)
         else:
             click.secho(formatted_query, fg="yellow")
             click.secho(
