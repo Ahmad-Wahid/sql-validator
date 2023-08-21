@@ -1,8 +1,6 @@
 import sqlparse
 import psycopg2
 import click
-from colored import fg
-import sys
 
 
 def format_query(query: str) -> str:
@@ -21,7 +19,6 @@ def validate_sql(connection: psycopg2, query: str):
     try:
         parsed = sqlparse.parse(query)
         if len(parsed) == 0:
-
             return False, "Invalid SQL: Empty query"
         formatted_query = format_query(query)
 
@@ -32,11 +29,14 @@ def validate_sql(connection: psycopg2, query: str):
             click.secho("Query is valid.")
         else:
             click.secho(formatted_query, fg="yellow")
-            click.secho("Invalid SQL: Only SELECT statements are supported for validation", fg="red")
+            click.secho(
+                "Invalid SQL: Only SELECT statements are supported for validation",
+                fg="red",
+            )
     except psycopg2.Error as e:
         formatted_query = format_query(query)
         click.secho(formatted_query, fg="yellow")
         click.secho(f"Validation error: {str(e)}", fg="red")
     finally:
         cursor.close()
-    print("="*30)
+    print("=" * 30)

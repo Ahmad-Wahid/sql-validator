@@ -14,7 +14,6 @@ setup(
         "psycopg2-binary",
         "wheel",
         "python-dotenv",
-        "colored"
     ],
     entry_points={
         "console_scripts": ["sql_validator=sql_validator.validate:main"],

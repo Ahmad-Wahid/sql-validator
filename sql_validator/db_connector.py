@@ -5,13 +5,26 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
-def connect_db():
+
+def get_env_variables():
+    database = os.getenv("DB_NAME")
+    user = os.getenv("DB_USER")
+    password = os.getenv("DB_PASSWORD")
+    host = os.getenv("DB_HOST", "localhost")
+    port = os.getenv("DB_PORT", "5432")
+    return database, user, password, host, port
+
+
+def connect_db(
+    database: str = None,
+    user: str = None,
+    password: str = None,
+    host: str = "localhost",
+    port: str = "5432",
+) -> psycopg2:
     try:
-        database = os.getenv("DB_NAME")
-        user = os.getenv("DB_USER")
-        password = os.getenv("DB_PASSWORD")
-        host = os.getenv("DB_HOST", "localhost")
-        port = os.getenv("DB_PORT", "5432")
+        if not (database and user and password and host and port):
+            database, user, password, host, port = get_env_variables()
 
         if database and user and password:
             conn = psycopg2.connect(

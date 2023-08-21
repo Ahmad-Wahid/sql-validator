@@ -6,7 +6,7 @@ from sql_validator.sql_validator import validate_sql
 
 
 @click.command()
-@click.option("--query", type=str,  help="SQL query to validate")
+@click.option("--query", type=str, help="SQL query to validate")
 @click.option(
     "--file", type=click.Path(exists=True), help="Path to file containing SQL queries"
 )

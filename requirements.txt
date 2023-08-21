@@ -2,4 +2,5 @@ click
 sqlparse
 psycopg2-binary
 wheel
+python-dotenv
 
