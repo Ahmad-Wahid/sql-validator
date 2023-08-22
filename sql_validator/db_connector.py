@@ -1,12 +1,17 @@
+import click
 from dotenv import load_dotenv
 import psycopg2
 import os
 
 # Load environment variables from .env file
-load_dotenv()
+
 
 
 def get_env_variables():
+    status = load_dotenv()
+    if status is False:
+        click.echo("Environment file is missing.")
+        exit()
     database = os.getenv("DB_NAME")
     user = os.getenv("DB_USER")
     password = os.getenv("DB_PASSWORD")
@@ -23,7 +28,7 @@ def connect_db(
     port: str = "5432",
 ) -> psycopg2:
     try:
-        if not (database and user and password and host and port):
+        if not (database and user and password):
             database, user, password, host, port = get_env_variables()
 
         if database and user and password:
