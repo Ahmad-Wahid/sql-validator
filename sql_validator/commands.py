@@ -56,10 +56,13 @@ def commands(query: str, file, metadata, show_data: bool):
 def load_file(file: str):
     if ".xls" in file or ".xlsx" in file or ".xlsm" in file:
         queries_df = pd.read_excel(file)
+        queries_df.index = queries_df.index+1
     elif ".csv" in file:
         queries_df = pd.read_csv(file)
+        queries_df.index = queries_df.index + 1
     elif ".sql" in file:
         with open(file, "r") as f:
             queries_list = f.read().split(";")
             queries_df = pd.DataFrame(queries_list, columns=["queries"])
+            queries_df.index = queries_df.index + 1
     return queries_df
