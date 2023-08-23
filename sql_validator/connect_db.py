@@ -1,10 +1,10 @@
+
+from __future__ import annotations
+
 import click
 from dotenv import load_dotenv
 import psycopg2
 import os
-
-# Load environment variables from .env file
-
 
 
 def get_env_variables():
