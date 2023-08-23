@@ -2,14 +2,13 @@ import sqlparse
 import psycopg2
 import click
 
-
 def format_query(query: str) -> str:
     formatted_query = sqlparse.format(
         query,
         strip_comments=True,
-        eindent=True,
+        # reindent=True,
         keyword_case="upper",
-        indent_columns=True,
+        reindent_aligned=True,
     )
     return formatted_query
 
