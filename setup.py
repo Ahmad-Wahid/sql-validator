@@ -1,4 +1,11 @@
+
 from setuptools import setup, find_packages
+
+def load_requirements(file):
+    with open(file, "r") as f:
+        requirements = f.read().split("\n")
+    return requirements
+
 
 setup(
     name="sql_validator",
@@ -8,14 +15,8 @@ setup(
     author="Ahmad Wahid",
     author_email="ahmedwahid16101@email.com",
     url="https://github.com/Ahmad-Wahid/sql-validator",
-    install_requires=[
-        "click",
-        "sqlparse",
-        "psycopg2-binary",
-        "wheel",
-        "python-dotenv",
-    ],
+    install_requires=load_requirements("requirements.txt"),
     entry_points={
-        "console_scripts": ["sql_validator=sql_validator.validate:main"],
+        "console_scripts": ["sql_validator=sql_validator.commands:commands"],
     },
 )

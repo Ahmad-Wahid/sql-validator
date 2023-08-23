@@ -3,4 +3,6 @@ sqlparse
 psycopg2-binary
 wheel
 python-dotenv
+openpyxl
+pandas==2.0.3
 
