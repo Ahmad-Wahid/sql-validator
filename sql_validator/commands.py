@@ -38,10 +38,14 @@ def commands(query: str, file, metadata, show_data: bool):
         for row in range(queries_df.shape[0]):
             query = queries_df["queries"].iloc[row].strip()
 
-            if query:
-                validate_sql(conn, query, metadata_query=metadata_df["queries"].iloc[row].strip(), show_data=show_data)
-            else:
-                click.echo("Empty string is passed.")
+            try:
+                if query:
+                    validate_sql(conn, query, metadata_query=metadata_df["queries"].iloc[row].strip(), show_data=show_data)
+                else:
+                    click.echo("Empty string is passed.")
+            except IndexError as e:
+                print("The following queries are not present in the metadata.")
+                print(queries_df["queries"].iloc[row::])
 
     except Exception as e:
         click.echo(f"Error: {str(e)}")
@@ -58,5 +62,4 @@ def load_file(file: str):
         with open(file, "r") as f:
             queries_list = f.read().split(";")
             queries_df = pd.DataFrame(queries_list, columns=["queries"])
-
     return queries_df
