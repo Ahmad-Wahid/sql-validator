@@ -25,8 +25,10 @@ def get_query_result(cursor, query):
     return df
 
 
-def validate_sql(connection: psycopg2, query: str, metadata_query: str = None, show_data: bool = False):
+def validate_sql(connection: psycopg2, query: str, metadata_query: str = None, schema: str = "public", show_data: bool = False):
     cursor = connection.cursor()
+    set_search_path_query = f"SET search_path TO {schema}"
+    cursor.execute(set_search_path_query)
     try:
         parsed = sqlparse.parse(query)
         if len(parsed) == 0:
